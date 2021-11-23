@@ -1,5 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <string.h>
+#include <stdlib.h> 
+#include <time.h> 
  
 class Forca {
     public:
@@ -15,11 +19,17 @@ class Forca {
  
         std::string m_arquivo_palavras; //<! nome do arquivo contendo as palavras
  
-        Dificuldade d = Dificuldade::FACIL; //<! dificuldade do jogo
+        Dificuldade d; //<! dificuldade do jogo
  
         std::string m_palavra_atual; //<! palavra sendo testada atualmente
  
         int m_tentativas_restantes = 6; //<! tentativas restantes
+
+        int frequencia_media; //<! frequencia media das palavras
+        
+        int m_palavras_FM; //<! quantidade de palavras consideradas facil ou medio.
+        
+        std::vector<std::string> m_palavras_usadas; //<! vector contendo as palavras sorteadas
    
     public:
         /**
@@ -80,6 +90,12 @@ class Forca {
          * @return T se a palpite pertence à palavra, F caso contrário.
          */
         bool palpite(std::string palpite);
+
+        /**
+         * Em caso de houver palavras ainda, este método deve retornar T.
+         * @return T caso o m_palavras_usadas não contenha todas as palavras para aquela dificuldade, F caso o contrario.
+         */
+        bool palavras_restantes();
  
         /**
          * Em caso de Game Over este método deve retornar T.
@@ -99,5 +115,23 @@ class Forca {
          * @return a quantidade de tentativas restantes.
          */
         int get_tentativas_restantes();
- 
+
+
+        /**
+         * Atualiza o arquivo de score. 
+         * Este método é útil no caso do jogador escolher terminar o jogo.
+         * @param dif dificuldade do jogo.
+         * @param name nome do jogador.
+         * @param pontuacao pontuação do jogador.
+         */
+        void change_score(Dificuldade dif, std::string name, int pontuacao);
+        
 };
+
+
+/**
+* Converte letras em maiusculo para minusculo. 
+* Este método é útil para evitar conflitos durante o jogo.
+* @param word string a ser convertida.
+*/
+void converte_palavra(std::string& word);
