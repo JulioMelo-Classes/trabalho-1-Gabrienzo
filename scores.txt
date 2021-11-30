@@ -3,3 +3,5 @@ Fácil; Julio; CORACAO; 5
 Difícil; Isaac; ; -4
 Médio; Ramon; PROFESSOR, CASA, DISCORD; 60
 Médio; carlos; Estado, Trabalho; 2
+Difícil; julio; governo; -3
+Difícil; julio; tempo; -4
